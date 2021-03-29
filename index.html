@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <title>화학2 완충용액 시뮬레이션</title>
+</head>
+<body>   
+    <header>
+    <center>
+        <h1>완충용액 시뮬레이션</h1>
+    </center>
+    </header>
+    <div class="main">
+        <div class="bottle1">
+            <div id="water">
+                증류수<p id="phwater">pH :</p>
+            </div>
+        </div>
+        <div class="bottle2">
+            <div id="mixed">
+                CH3COOH + CH3COONA<p id="phmixed">pH :</p>
+            </div>
+        </div>
+    </div>
+    <div class="menu">
+        <script type="text/javascript">
+            var hclcounter = 0;
+            var naohcounter = 0;
+            var counter = 0;
+            var water = document.getElementById('water');
+            var mixed = document.getElementById('mixed');
+            var ph = document.getElementById('ph');
+            var x = 0;
+            function hcladd(){
+                counter += 1;
+                hclcounter += 1;
+                if (counter==1){
+                    water.style.height = "125" + "px";
+                    mixed.style.height = "125px";
+                }
+            }function naohadd(){
+                counter += 1;
+                naohcounter += 1;
+                if (counter==1){
+                    water.style.height = "125" + "px";
+                    mixed.style.height = "125px";
+                }
+                
+            }
+            function reset(){
+                var water = document.getElementById('water');
+                var mixed = document.getElementById('mixed');
+                hclcounter = 0;
+                naohcounter = 0;
+                counter = 0;
+                water.style.height = "100px";
+                mixed.style.height = "100px";
+                document.getElementById('phwater').innerHTML = "pH : 7";    
+            }
+            document.getElementById('phwater').innerHTML = "pH : 7";
+            document.getElementById('phmixed').innerHTML = "pH : 4.75";
+            function phadd(){
+                if (water.style.height=="125px"){
+                    if (hclcounter==1){
+                    document.getElementById('phwater').innerHTML = "pH : 2";
+                    document.getElementById('phmixed').innerHTML = "pH : 4.74";
+                    }
+                    else if (naohcounter==1){
+                    document.getElementById('phwater').innerHTML = "pH : 12";
+                    document.getElementById('phmixed').innerHTML = "pH : 4.76";
+                    }
+                }
+                console.log(hclcounter,naohcounter,counter);
+            }
+            function hcladdadd(){
+                water.style.height = "175px";
+                mixed.style.height = "175px";
+                document.getElementById('phwater').innerHTML = "pH : -1";
+                document.getElementById('phmixed').innerHTML = "pH : 2.5";
+            }
+        </script>
+        <button class="bar" onclick="hcladd();phadd()">1M HCl 추가</button>
+        <button class="bar" onclick="naohadd();phadd()">1M NaOH 추가</button>
+        <button class="bar" onclick="reset()">초기화</button>
+        <button class="bar" onclick="hcladdadd()">10M HCl 추가</button>
+    </div>
+    
+</body>
+</html>
